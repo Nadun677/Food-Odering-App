@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatefulWidget {
+  const AccountPage({super.key});
+
   @override
   _AccountPageState createState() => _AccountPageState();
 }
@@ -9,14 +11,13 @@ class _AccountPageState extends State<AccountPage> {
   bool pushNotifications = true;
   bool promotionalNotifications = false;
 
+  String userName = "Nadun Nimanshana";
+  String userEmail = "nadunnimansha067@gmail.com";
+  String userPhone = "+94 123 456 789"; // Added phone number
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text("Account"),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -29,18 +30,43 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SizedBox(height: 10),
             Text(
-              "Nadun Nimanshana",
+              userName,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              "nadunnimansha067@gmail.com",
+              userEmail,
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            ),
+            Text(
+              userPhone, // Displaying phone number
               style: TextStyle(fontSize: 14, color: Colors.grey[600]),
             ),
             SizedBox(height: 20),
 
             // My Account Section
             _buildSection("My Account", [
-              _buildListTile(Icons.person, "Personal information"),
+              _buildListTile(Icons.person, "Personal information", onTap: () {
+                // Navigate to the EditPersonalInfoPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditPersonalInfoPage(
+                      currentName: userName,
+                      currentEmail: userEmail,
+                      currentPhone: userPhone, // Passing phone number
+                    ),
+                  ),
+                ).then((updatedInfo) {
+                  // If data is updated, update the profile
+                  if (updatedInfo != null) {
+                    setState(() {
+                      userName = updatedInfo['name'];
+                      userEmail = updatedInfo['email'];
+                      userPhone = updatedInfo['phone']; // Update phone number
+                    });
+                  }
+                });
+              }),
               _buildListTile(Icons.language, "Language", trailing: Text("English (US)")),
               _buildListTile(Icons.privacy_tip, "Privacy Policy"),
               _buildListTile(Icons.settings, "Setting"),
@@ -103,14 +129,12 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   // Method to Build a ListTile Item
-  Widget _buildListTile(IconData icon, String title, {Widget? trailing, Color iconColor = Colors.black87, Color textColor = Colors.black87}) {
+  Widget _buildListTile(IconData icon, String title, {Widget? trailing, Color iconColor = Colors.black87, Color textColor = Colors.black87, Function()? onTap}) {
     return ListTile(
       leading: Icon(icon, color: iconColor),
       title: Text(title, style: TextStyle(color: textColor, fontSize: 14)),
       trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
-      onTap: () {
-        // Handle navigation or action
-      },
+      onTap: onTap,
     );
   }
 
@@ -121,6 +145,80 @@ class _AccountPageState extends State<AccountPage> {
       value: value,
       onChanged: onChanged,
       activeColor: Colors.green,
+    );
+  }
+}
+
+// Edit Personal Information Page
+class EditPersonalInfoPage extends StatefulWidget {
+  final String currentName;
+  final String currentEmail;
+  final String currentPhone;
+
+  EditPersonalInfoPage({required this.currentName, required this.currentEmail, required this.currentPhone});
+
+  @override
+  _EditPersonalInfoPageState createState() => _EditPersonalInfoPageState();
+}
+
+class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController(); // Phone number controller
+
+  @override
+  void initState() {
+    super.initState();
+    // Set initial values for name, email, and phone number
+    _nameController.text = widget.currentName;
+    _emailController.text = widget.currentEmail;
+    _phoneController.text = widget.currentPhone; // Set phone number
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Edit Personal Information")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Name", style: TextStyle(fontSize: 16)),
+            TextField(
+              controller: _nameController,
+              decoration: InputDecoration(hintText: "Enter your name"),
+            ),
+            SizedBox(height: 16),
+            Text("Email", style: TextStyle(fontSize: 16)),
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(hintText: "Enter your email"),
+            ),
+            SizedBox(height: 16),
+            Text("Phone", style: TextStyle(fontSize: 16)), // Phone number field
+            TextField(
+              controller: _phoneController,
+              decoration: InputDecoration(hintText: "Enter your phone number"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // When save is pressed, send back the updated info to AccountPage
+                Map<String, String> updatedInfo = {
+                  'name': _nameController.text,
+                  'email': _emailController.text,
+                  'phone': _phoneController.text, // Include phone number
+                };
+
+                // Return the updated info to AccountPage
+                Navigator.pop(context, updatedInfo);
+              },
+              child: Text("Save Changes"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

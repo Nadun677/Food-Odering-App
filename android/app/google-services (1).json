@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12204178255",
+    "project_id": "food-odering-app-32772",
+    "storage_bucket": "food-odering-app-32772.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12204178255:android:173facf55aa2c2af76633a",
+        "android_client_info": {
+          "package_name": "com.example.food_odering_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7IURctSF31nf7B8ZeOOXaMjDBzwO3f1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

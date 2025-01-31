@@ -7,7 +7,6 @@ import 'package:food_odering_app/pages/dashboard_pages/favorite_page.dart';
 import 'package:food_odering_app/pages/dashboard_pages/home_page.dart';
 import 'package:food_odering_app/pages/dashboard_pages/oders_page.dart';
 import 'package:food_odering_app/pages/dashboard_pages/profile_page.dart';
-import 'package:food_odering_app/pages/dashboard_pages/resturant.dart';
 import 'package:food_odering_app/pages/dashboard_pages/cart_page.dart';
 
 
@@ -25,7 +24,6 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     HomePage(),
     OdersPage(),
-    RestaurantDetailsScreen(),
     CartScreen(),
     FavoritePage(),
     AccountPage(),
@@ -74,10 +72,6 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.local_restaurant),
             label: "Restaurant",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_travel_outlined),
-            label: "Order",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart_outlined),

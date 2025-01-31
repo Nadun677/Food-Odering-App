@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_odering_app/pages/main_screen.dart';
+
+import 'package:food_odering_app/pages/log_in.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -13,11 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: MainPage(),
+        body: LoginPage(),
       )
+
+      
     );
   }
+
 }
-
-
-

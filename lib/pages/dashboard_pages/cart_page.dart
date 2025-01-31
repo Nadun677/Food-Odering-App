@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/pages/payment_method_page.dart';
+// Import PaymentMethodPage
 
 class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
+
   @override
   _CartScreenState createState() => _CartScreenState();
-
 }
 
 class _CartScreenState extends State<CartScreen> {
@@ -13,13 +16,13 @@ class _CartScreenState extends State<CartScreen> {
       "name": "Chicken Cheese Pasta",
       "price": 1300.00,
       "quantity": 1,
-      "image": "assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg", // Replace with actual image URL
+      "image": "assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg",
     },
     {
       "name": "Chocolate Milkshake",
       "price": 750.00,
       "quantity": 2,
-      "image": "assets/images/Thick-chocolate-mikshake-1.jpg", // Replace with actual image URL
+      "image": "assets/images/Thick-chocolate-mikshake-1.jpg",
     },
   ];
 
@@ -54,7 +57,6 @@ class _CartScreenState extends State<CartScreen> {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Cart Items
             Expanded(
               child: ListView.builder(
                 itemCount: cartItems.length,
@@ -67,7 +69,6 @@ class _CartScreenState extends State<CartScreen> {
                       padding: EdgeInsets.all(12),
                       child: Row(
                         children: [
-                          // Item Image
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
@@ -78,8 +79,6 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                           SizedBox(width: 12),
-
-                          // Item Details
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,8 +92,6 @@ class _CartScreenState extends State<CartScreen> {
                               ],
                             ),
                           ),
-
-                          // Quantity Control
                           Row(
                             children: [
                               IconButton(
@@ -128,22 +125,6 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
             ),
-
-            // Add Food Button
-            TextButton.icon(
-              onPressed: () {
-                // Add food functionality
-              },
-              icon: Icon(Icons.add, color: Colors.green),
-              label: Text(
-                "Add Food",
-                style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            SizedBox(height: 12),
-
-            // Payment Summary
             Container(
               padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -158,18 +139,6 @@ class _CartScreenState extends State<CartScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-
-                  // Promo Code Field
-                  TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.local_offer, color: Colors.green),
-                      hintText: "Enter your promo code",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-
-                  // Subtotal and Delivery Fee
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -178,7 +147,6 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                   SizedBox(height: 8),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -187,10 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                   SizedBox(height: 8),
-
                   Divider(),
-
-                  // Total Amount
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -204,41 +169,33 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
             ),
-
             SizedBox(height: 16),
-
-            // Bottom Buttons
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {
-                      // Add item functionality
-                    },
+                    onPressed: () {},
                     style: OutlinedButton.styleFrom(
                       padding: EdgeInsets.all(14),
                       side: BorderSide(color: Colors.green),
                     ),
-                    child: Text(
-                      "Add Item",
-                      style: TextStyle(fontSize: 16, color: Colors.green),
-                    ),
+                    child: Text("Add Item", style: TextStyle(fontSize: 16, color: Colors.green)),
                   ),
                 ),
                 SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // Checkout functionality
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const PaymentMethodPage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
                       padding: EdgeInsets.all(14),
                     ),
-                    child: Text(
-                      "Checkout",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
+                    child: Text("Checkout", style: TextStyle(fontSize: 16, color: Colors.white)),
                   ),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/pages/table_availability_page.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   const RestaurantDetailsScreen({super.key});
@@ -52,7 +53,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   Icon(Icons.star_half, color: Colors.orange, size: 20),
                   SizedBox(width: 8),
                   Text(
-                    '4.0 (999+ Feedbacks)',
+                    '4.0 (100 Feedbacks)',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
@@ -111,7 +112,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  'Offers will be displayed here',
+                  'No Offers Available Today',
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ),
@@ -123,9 +124,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(16.0),
         child: ElevatedButton(
-          onPressed: () {
-            // Add booking functionality here
-          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
             shape: RoundedRectangleBorder(
@@ -133,6 +131,16 @@ class RestaurantDetailsScreen extends StatelessWidget {
             ),
             padding: EdgeInsets.all(16),
           ),
+          
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TableAvailabilityPage(),
+              ),
+            );
+          },
+          
           child: Text(
             'View Available Tables',
             style: TextStyle(fontSize: 16),
@@ -148,7 +156,7 @@ class FacilityItem extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const FacilityItem({required this.icon, required this.label});
+  const FacilityItem({super.key, required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {

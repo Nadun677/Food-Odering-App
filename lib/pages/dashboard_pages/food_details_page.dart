@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/pages/dashboard_pages/cart_page.dart';
 
 class FoodDetailsPage extends StatefulWidget {
+  const FoodDetailsPage({super.key});
+
   @override
   _FoodDetailsPageState createState() => _FoodDetailsPageState();
 }
@@ -50,7 +53,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
-                  
+
                   // Rating
                   Row(
                     children: [
@@ -68,7 +71,10 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   // Price
                   Text(
                     "Rs ${totalPrice.toStringAsFixed(2)}",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green),
                   ),
                   SizedBox(height: 10),
 
@@ -82,7 +88,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   SizedBox(height: 15),
 
                   // Spicy Level Slider
-                  Text("Spicy", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text("Cheese",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   Slider(
                     value: spiciness,
                     onChanged: (value) {
@@ -103,7 +111,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Quantity", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text("Quantity",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
                       Row(
                         children: [
                           IconButton(
@@ -117,7 +127,8 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                               }
                             },
                           ),
-                          Text(quantity.toString(), style: TextStyle(fontSize: 18)),
+                          Text(quantity.toString(),
+                              style: TextStyle(fontSize: 18)),
                           IconButton(
                             icon: Icon(Icons.add_circle_outline),
                             onPressed: () {
@@ -157,7 +168,10 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
             // Price
             Text(
               "Rs ${totalPrice.toStringAsFixed(2)}",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green),
             ),
 
             // Add to Cart Button
@@ -165,10 +179,16 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
               ),
               onPressed: () {
-                // Handle "Add to Cart" logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(),
+                  ),
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text("Added to Cart!"),

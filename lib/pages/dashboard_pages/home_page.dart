@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/dashboard_pages/food_details_page.dart';
 import 'package:food_odering_app/pages/dashboard_pages/oders_page.dart';
+import 'package:food_odering_app/pages/food_details_page1.dart';
+import 'package:food_odering_app/pages/food_details_page2.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -61,7 +63,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Text('Buy Now'),
+                    child: Text('View'),
                   ),
                 ],
               ),
@@ -109,24 +111,52 @@ class HomePage extends StatelessWidget {
                       location: 'Culinary Canvas Café',
                     ),
                   ),
+
                   SizedBox(width: 8),
-                  FoodCard(
+                  
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetailsPage1(),
+                        ),
+                      );
+                    },
+
+                  child:  FoodCard(
                     image:
                         'assets/images/chicken-Biryani-848x477.jpg',
                     name: 'Chicken Biryani',
                     location: 'Ambrosia Resturant',
+                    ),
                   ),
+                  
                   SizedBox(width: 8),
-                  FoodCard(
+                  
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetailsPage2(),
+                        ),
+                      );
+                    },           
+                  child: FoodCard(
                     image:
                         'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
-                    name: 'Beef Burgers',
+                    name: 'Beef Burger',
                     location: 'Culinary Canvas Café',
+                  ),
                   ),
                 ],
               ),
             ),
             SizedBox(height: 16),
+
+
+            
 
             // Booking Restaurant
             Row(

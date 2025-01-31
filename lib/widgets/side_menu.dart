@@ -27,11 +27,11 @@ class SideMenu extends StatelessWidget {
               children: [
                 
                 _buildDrawerItem(Icons.home, "Home", () {
-                  Navigator.pushNamed(context, "/home");
+                  Navigator.pushNamed(context, "/HomePage");
 
                 }),
-                _buildDrawerItem(Icons.shopping_cart, "Orders", () {
-                  Navigator.pushNamed(context, "/orders");
+                _buildDrawerItem(Icons.star, "RateUs", () {
+                  Navigator.pushNamed(context, "/FavoritePage ");
                 }),
                 _buildDrawerItem(Icons.favorite, "Favorites", () {
                   Navigator.pushNamed(context, "/favorites");
