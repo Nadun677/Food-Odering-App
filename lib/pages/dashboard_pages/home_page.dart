@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/dashboard_pages/food_details_page.dart';
+import 'package:food_odering_app/pages/dashboard_pages/food_details_page3.dart';
+import 'package:food_odering_app/pages/dashboard_pages/food_details_page4.dart';
 import 'package:food_odering_app/pages/dashboard_pages/oders_page.dart';
+import 'package:food_odering_app/pages/food/strawberry_page.dart';
 import 'package:food_odering_app/pages/food_details_page1.dart';
 import 'package:food_odering_app/pages/food_details_page2.dart';
+import 'package:food_odering_app/pages/oders/oders_page1.dart';
+import 'package:food_odering_app/pages/oders/oders_page2.dart';
+import 'package:food_odering_app/pages/oders/oders_page3.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -55,9 +61,7 @@ class HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   ElevatedButton(
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -82,9 +86,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: Text('See all'),
                 ),
               ],
@@ -106,14 +108,13 @@ class HomePage extends StatelessWidget {
                       );
                     },
                     child: FoodCard(
-                      image: 'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
+                      image:
+                          'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
                       name: 'Cheese Burger',
                       location: 'Culinary Canvas Café',
                     ),
                   ),
-
                   SizedBox(width: 8),
-                  
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -123,17 +124,13 @@ class HomePage extends StatelessWidget {
                         ),
                       );
                     },
-
-                  child:  FoodCard(
-                    image:
-                        'assets/images/chicken-Biryani-848x477.jpg',
-                    name: 'Chicken Biryani',
-                    location: 'Ambrosia Resturant',
+                    child: FoodCard(
+                      image: 'assets/images/chicken-Biryani-848x477.jpg',
+                      name: 'Chicken Biryani',
+                      location: 'Ambrosia Resturant',
                     ),
                   ),
-                  
                   SizedBox(width: 8),
-                  
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -142,21 +139,71 @@ class HomePage extends StatelessWidget {
                           builder: (context) => FoodDetailsPage2(),
                         ),
                       );
-                    },           
-                  child: FoodCard(
-                    image:
-                        'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
-                    name: 'Beef Burger',
-                    location: 'Culinary Canvas Café',
+                    },
+                    child: FoodCard(
+                      image:
+                          'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
+                      name: 'Beef Burger',
+                      location: 'Culinary Canvas Café',
+                    ),
                   ),
+                  SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetailsPage4(),
+                        ),
+                      );
+                    },
+                    child: FoodCard(
+                      image:
+                          'assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg',
+                      name: 'Chicken Pasta ',
+                      location: 'Ambrosia Resturant',
+                    ),
                   ),
+                  SizedBox(width: 8),
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetailsPage3(),
+                        ),
+                      );
+                    },
+                    child: FoodCard(
+                      image: 'assets/images/Thick-chocolate-mikshake-1.jpg',
+                      name: 'Choco Milkshake',
+                      location: 'Java Junction',
+                    ),
+                  ),
+                  SizedBox(width: 8),
+
+
+                                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Strawbeerypage(),
+                        ),
+                      );
+                    },
+                    child: FoodCard(
+                      image: 'assets/images/Banana-Strawberry-Milkshake-Featured-Image.jpg',
+                      name: 'Strawberry Milkshake',
+                      location: 'Java Junction',
+                    ),
+                  ),
+                  SizedBox(height: 16),
+
                 ],
               ),
             ),
-            SizedBox(height: 16),
-
-
-            
 
             // Booking Restaurant
             Row(
@@ -184,21 +231,60 @@ class HomePage extends StatelessWidget {
                   image: 'assets/images/70259830.webp',
                   name: 'Ambrosia Hotel & Resturant',
                   location: 'Ambrosia Hotel & Resturant',
-                  rating: 4.7,
+                  rating: 4.5,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OdersPage(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 8),
                 BookingCard(
                   image: 'assets/images/images.jpeg',
                   name: 'Tava Resturant',
                   location: 'Tava Resturant',
-                  rating: 4.7,
+                  rating: 4.5,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OdersPage1(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 8),
                 BookingCard(
                   image: 'assets/images/images.jpeg',
                   name: 'Culinary Canva CAfe',
                   location: 'Culinary Canva CAfe ',
+                  rating: 4.8,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OdersPage2(),
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 8),
+                BookingCard(
+                  image: 'assets/images/images.jpeg',
+                  name: 'Java Junction',
+                  location: 'Java Junction',
                   rating: 4.7,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OdersPage3(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -280,6 +366,7 @@ class BookingCard extends StatelessWidget {
   final String location;
   final double rating;
   final String image;
+  final Function() onTap;
 
   const BookingCard({
     super.key,
@@ -287,6 +374,7 @@ class BookingCard extends StatelessWidget {
     required this.location,
     required this.rating,
     required this.image,
+    required this.onTap,
   });
 
   @override
@@ -332,12 +420,7 @@ class BookingCard extends StatelessWidget {
           ),
           SizedBox(width: 8),
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => OdersPage(),),
-              );
-            },
+            onPressed: onTap,
             child: Text('Book'),
           ),
         ],

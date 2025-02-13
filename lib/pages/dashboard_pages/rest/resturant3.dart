@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/table_availability_page.dart';
 
-class RestaurantDetailsScreen extends StatelessWidget {
-  const RestaurantDetailsScreen({super.key});
+class RestaurantDetailsScreen4 extends StatelessWidget {
+  const RestaurantDetailsScreen4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'assets/images/70259830.webp', // Replace with real image URL
+                  'assets/images/images.png', // Replace with real image URL
                   width: double.infinity,
                   height: 200,
                   fit: BoxFit.cover,
@@ -40,7 +40,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
               // Restaurant Name & Rating
               Text(
-                'Ambrosia Hotel & Resturant',
+                'Java Junction',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
@@ -50,10 +50,10 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   Icon(Icons.star, color: Colors.orange, size: 20),
                   Icon(Icons.star, color: Colors.orange, size: 20),
                   Icon(Icons.star, color: Colors.orange, size: 20),
-                  Icon(Icons.star_half, color: Colors.orange, size: 20),
+                  Icon(Icons.star, color: Colors.orange, size: 20),
                   SizedBox(width: 8),
                   Text(
-                    '4.0 (100 Feedbacks)',
+                    '4.8 (500 Feedbacks)',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
@@ -67,7 +67,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'The aroma of freshly brewed coffee filled the air, mingling with the soft chatter of patrons. Sunlight streamed through the large windows, illuminating the cozy cafe with a warm glow. It was the perfect place to escape the hustle and bustle of the city and enjoy a moment of tranquility.',
+                'At Java Junction, the rich scent of freshly brewed coffee intertwines with the rhythmic chatter of coffee lovers and the gentle hum of background jazz. The warm glow of vintage Edison bulbs reflects off rustic wooden tables, creating an ambiance that feels both vibrant and cozy. Whether you re here for a quick caffeine fix or a long, unhurried conversation, every sip promises a taste of comfort and inspiration.',
                 style: TextStyle(color: Colors.grey[700]),
               ),
               SizedBox(height: 16),
@@ -80,9 +80,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
               SizedBox(height: 8),
               Column(
                 children: [
-                  FacilityItem(icon: Icons.local_cafe, label: 'Snack Bar'),
-                  FacilityItem(icon: Icons.directions_bike, label: 'Bikes & Parking'),
-                  FacilityItem(icon: Icons.wc, label: 'Toilet'),
+                  FacilityItem(icon: Icons.local_cafe, label: 'Fast Service'),
+                  FacilityItem(icon: Icons.car_repair, label: 'Parking'),
+                  FacilityItem(icon: Icons.wc, label: 'Woshroom'),
                   FacilityItem(icon: Icons.water_drop, label: '24/7 Water Facility'),
                 ],
               ),

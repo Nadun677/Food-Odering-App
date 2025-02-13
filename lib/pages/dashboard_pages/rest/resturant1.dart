@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/table_availability_page.dart';
 
-class RestaurantDetailsScreen extends StatelessWidget {
-  const RestaurantDetailsScreen({super.key});
+class RestaurantDetailsScreen2 extends StatelessWidget {
+  const RestaurantDetailsScreen2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'assets/images/70259830.webp', // Replace with real image URL
+                  'assets/images/images.jpeg', // Replace with real image URL
                   width: double.infinity,
                   height: 200,
                   fit: BoxFit.cover,
@@ -40,7 +40,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
               // Restaurant Name & Rating
               Text(
-                'Ambrosia Hotel & Resturant',
+                'Tava Restaurant',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
@@ -53,7 +53,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   Icon(Icons.star_half, color: Colors.orange, size: 20),
                   SizedBox(width: 8),
                   Text(
-                    '4.0 (100 Feedbacks)',
+                    '4.5 (400 Feedbacks)',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
@@ -81,8 +81,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
               Column(
                 children: [
                   FacilityItem(icon: Icons.local_cafe, label: 'Snack Bar'),
-                  FacilityItem(icon: Icons.directions_bike, label: 'Bikes & Parking'),
-                  FacilityItem(icon: Icons.wc, label: 'Toilet'),
+                  FacilityItem(icon: Icons.car_repair, label: 'Parking'),
+                  FacilityItem(icon: Icons.wc, label: 'Woshroom'),
                   FacilityItem(icon: Icons.water_drop, label: '24/7 Water Facility'),
                 ],
               ),
