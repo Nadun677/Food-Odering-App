@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/dashboard_pages/rest/resturant1.dart';
 import 'package:food_odering_app/pages/dashboard_pages/resturant.dart';
+import 'package:food_odering_app/pages/oders/oders_page2.dart';
+import 'package:food_odering_app/pages/oders/oders_page3.dart';
 
 class OdersPage1 extends StatelessWidget {
   const OdersPage1({super.key});
@@ -106,7 +108,14 @@ class OdersPage1 extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OdersPage1(),
+                ),
+              );
+                    },
                     child: Text('See all'),
                   ),
                 ],
@@ -236,7 +245,7 @@ class BookingCard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => OdersPage1(),
+                  builder: (context) => OdersPage3(),
                 ),
               );
             },

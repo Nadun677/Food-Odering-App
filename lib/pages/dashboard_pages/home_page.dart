@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/data/food_data.dart';
+import 'package:food_odering_app/models/food_model.dart';
 import 'package:food_odering_app/pages/dashboard_pages/food_details_page.dart';
-import 'package:food_odering_app/pages/dashboard_pages/food_details_page3.dart';
-import 'package:food_odering_app/pages/dashboard_pages/food_details_page4.dart';
 import 'package:food_odering_app/pages/dashboard_pages/oders_page.dart';
-import 'package:food_odering_app/pages/food/strawberry_page.dart';
-import 'package:food_odering_app/pages/food_details_page1.dart';
-import 'package:food_odering_app/pages/food_details_page2.dart';
 import 'package:food_odering_app/pages/oders/oders_page1.dart';
 import 'package:food_odering_app/pages/oders/oders_page2.dart';
 import 'package:food_odering_app/pages/oders/oders_page3.dart';
+import 'package:food_odering_app/widgets/food_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // get food data
+  final foodList = FoodData().foodList;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +80,8 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 16),
 
+            
+
             // Today's New Arrival
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,116 +100,80 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 8),
+            Text(
+              'Meals',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
 
             // Food Cards
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image:
-                          'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
-                      name: 'Cheese Burger',
-                      location: 'Culinary Canvas Café',
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage1(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image: 'assets/images/chicken-Biryani-848x477.jpg',
-                      name: 'Chicken Biryani',
-                      location: 'Ambrosia Resturant',
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage2(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image:
-                          'assets/images/grilled-cheeseburgers-melted-cheese-toppings.webp',
-                      name: 'Beef Burger',
-                      location: 'Culinary Canvas Café',
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage4(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image:
-                          'assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg',
-                      name: 'Chicken Pasta ',
-                      location: 'Ambrosia Resturant',
-                    ),
-                  ),
-                  SizedBox(width: 8),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.24,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: foodList.length,
+                itemBuilder: (context, index) {
+                  FoodModel food = foodList[index];
+                  if (food.isMeal == true) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodDetailsPage(
+                              foodId: food.foodId,
+                            ),
+                          ),
+                        );
+                      },
+                      child: FoodCard(
+                        image: food.foodImageUrl,
+                        name: food.foodName,
+                        location: food.location,
+                      ),
+                    );
+                  }
+                  return SizedBox.shrink();
+                },
+              ),
+            ),
 
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetailsPage3(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image: 'assets/images/Thick-chocolate-mikshake-1.jpg',
-                      name: 'Choco Milkshake',
-                      location: 'Java Junction',
-                    ),
-                  ),
-                  SizedBox(width: 8),
-
-
-                                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Strawbeerypage(),
-                        ),
-                      );
-                    },
-                    child: FoodCard(
-                      image: 'assets/images/Banana-Strawberry-Milkshake-Featured-Image.jpg',
-                      name: 'Strawberry Milkshake',
-                      location: 'Java Junction',
-                    ),
-                  ),
-                  SizedBox(height: 16),
-
-                ],
+            SizedBox(height: 15),
+            Text(
+              'Soft Drinks',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.24,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: foodList.length,
+                itemBuilder: (context, index) {
+                  FoodModel food = foodList[index];
+                  if (food.isMeal == false) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodDetailsPage(
+                              foodId: food.foodId,
+                            ),
+                          ),
+                        );
+                      },
+                      child: FoodCard(
+                        image: food.foodImageUrl,
+                        name: food.foodName,
+                        location: food.location,
+                      ),
+                    );
+                  }
+                  return SizedBox.shrink();
+                },
               ),
             ),
 
@@ -225,12 +197,13 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 8),
 
             // Restaurant Cards
+
             Column(
               children: [
                 BookingCard(
                   image: 'assets/images/70259830.webp',
-                  name: 'Ambrosia Hotel & Resturant',
-                  location: 'Ambrosia Hotel & Resturant',
+                  name: 'Ambrosia Hotel & Restaurant',
+                  location: 'Ambrosia Hotel & Restaurant',
                   rating: 4.5,
                   onTap: () {
                     Navigator.push(
@@ -244,8 +217,8 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 8),
                 BookingCard(
                   image: 'assets/images/images.jpeg',
-                  name: 'Tava Resturant',
-                  location: 'Tava Resturant',
+                  name: 'Tava Restaurant',
+                  location: 'Tava Restaurant',
                   rating: 4.5,
                   onTap: () {
                     Navigator.push(
@@ -259,8 +232,8 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 8),
                 BookingCard(
                   image: 'assets/images/images.jpeg',
-                  name: 'Culinary Canva CAfe',
-                  location: 'Culinary Canva CAfe ',
+                  name: 'Culinary Canva Café',
+                  location: 'Culinary Canva Café',
                   rating: 4.8,
                   onTap: () {
                     Navigator.push(
@@ -284,78 +257,12 @@ class HomePage extends StatelessWidget {
                         builder: (context) => OdersPage3(),
                       ),
                     );
-                  },
+                  }, // Ensure onTap is not null
                 ),
               ],
-            ),
+            )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class FoodCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final String location;
-
-  const FoodCard({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.location,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-            child: Image.asset(
-              image,
-              height: 100,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  location,
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

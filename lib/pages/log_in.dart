@@ -65,147 +65,149 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () {},
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Username Field
-              const Text("Username", style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 5),
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  hintText: "Enter your username",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Username Field
+                const Text("Username", style: TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: "Enter your username",
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your username";
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter your username";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 15),
-
-              // Password Field
-              const Text("Password", style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 5),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Enter your password",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                const SizedBox(height: 15),
+        
+                // Password Field
+                const Text("Password", style: TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "Enter your password",
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your password";
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter your password";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-
-              // Remember Me & Forgot Password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _rememberMe,
-                        activeColor: Colors.green,
-                        onChanged: (value) {
-                          setState(() {
-                            _rememberMe = value!;
-                          });
-                        },
-                      ),
-                      const Text("Remember me"),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forgot password?",
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-
-              // Login Button
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text(
-                    "Log In",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Divider with "Or"
-              Row(
-                children: const [
-                  Expanded(child: Divider()),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Or"),
-                  ),
-                  Expanded(child: Divider()),
-                ],
-              ),
-              const SizedBox(height: 18),
-
-              // Continue with Email Button
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text("Continue with email"),
-                ),
-              ),
-              const SizedBox(height: 18),
-
-              // Register Link
-              Center(
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Text.rich(
-                    TextSpan(
-                      text: "Don't have an account? ",
-                      style: TextStyle(color: Colors.black),
+                const SizedBox(height: 10),
+        
+                // Remember Me & Forgot Password
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        TextSpan(
-                          text: "Register",
-                          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                        Checkbox(
+                          value: _rememberMe,
+                          activeColor: Colors.green,
+                          onChanged: (value) {
+                            setState(() {
+                              _rememberMe = value!;
+                            });
+                          },
                         ),
+                        const Text("Remember me"),
                       ],
                     ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Forgot password?",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+        
+                // Login Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      "Log In",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+        
+                // Divider with "Or"
+                Row(
+                  children: const [
+                    Expanded(child: Divider()),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text("Or"),
+                    ),
+                    Expanded(child: Divider()),
+                  ],
+                ),
+                const SizedBox(height: 18),
+        
+                // Continue with Email Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text("Continue with email"),
+                  ),
+                ),
+                const SizedBox(height: 18),
+        
+                // Register Link
+                Center(
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const Text.rich(
+                      TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(color: Colors.black),
+                        children: [
+                          TextSpan(
+                            text: "Register",
+                            style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
