@@ -12,9 +12,9 @@ class _FavoritePageState extends State<FavoritePage> with SingleTickerProviderSt
 
   List<Map<String, dynamic>> orders = [
     {"name": "Ambrosia Hotel & Resturant", "location": "Kandy", "rating": 4.7, "image": "assets/images/ambrosia-the-multicuisine-restaurant-ellis-bridge-ahmedabad-punjabi-restaurants-268nkyu.avif"},
-    {"name": "Tava Resturant", "location": "Kandy", "rating": 4.7, "image": "assets/images/images.jpeg"},
-    {"name": "Java Junction", "location": "Kandy", "rating": 4.7, "image": "assets/images/images.png"},
-    {"name": "Ambrosia Hotel & Resturant", "location": "Kandy", "rating": 4.7, "image": "assets/images/ambrosia-the-multicuisine-restaurant-ellis-bridge-ahmedabad-punjabi-restaurants-268nkyu.avif"},
+    // {"name": "Tava Resturant", "location": "Kandy", "rating": 4.7, "image": "assets/images/images.jpeg"},
+    // {"name": "Java Junction", "location": "Kandy", "rating": 4.7, "image": "assets/images/images.png"},
+    // {"name": "Ambrosia Hotel & Resturant", "location": "Kandy", "rating": 4.7, "image": "assets/images/ambrosia-the-multicuisine-restaurant-ellis-bridge-ahmedabad-punjabi-restaurants-268nkyu.avif"},
   ];
 
   @override

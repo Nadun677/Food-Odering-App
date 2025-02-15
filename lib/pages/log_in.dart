@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/pages/dashboard_pages/signup_screen.dart';
 import 'package:food_odering_app/pages/main_screen.dart';
+import 'package:food_odering_app/pages/signup_screen.dart'; // Import SignupScreen
 
 void main() {
   runApp(const MyApp());
@@ -90,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 15),
-        
+
                 // Password Field
                 const Text("Password", style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 5),
@@ -109,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 10),
-        
+
                 // Remember Me & Forgot Password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 const SizedBox(height: 20),
-        
+
                 // Login Button
                 SizedBox(
                   width: double.infinity,
@@ -158,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-        
+
                 // Divider with "Or"
                 Row(
                   children: const [
@@ -171,13 +173,18 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 const SizedBox(height: 18),
-        
+
                 // Continue with Email Button
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignupScreen()),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -187,11 +194,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 18),
-        
+
                 // Register Link
                 Center(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignupScreen()),
+                      );
+                    },
                     child: const Text.rich(
                       TextSpan(
                         text: "Don't have an account? ",

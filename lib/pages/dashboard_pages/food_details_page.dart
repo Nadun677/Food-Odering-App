@@ -93,7 +93,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   Text(food.foodDescription,
                       style: TextStyle(fontSize: 14, color: Colors.grey[700])),
                   SizedBox(height: 15),
-                  Text("Cheese",
+                  Text("",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   Slider(

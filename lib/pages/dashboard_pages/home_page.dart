@@ -6,7 +6,10 @@ import 'package:food_odering_app/pages/dashboard_pages/oders_page.dart';
 import 'package:food_odering_app/pages/oders/oders_page1.dart';
 import 'package:food_odering_app/pages/oders/oders_page2.dart';
 import 'package:food_odering_app/pages/oders/oders_page3.dart';
+
+import 'package:food_odering_app/pages/voice/voice_ordering_page.dart';
 import 'package:food_odering_app/widgets/food_card.dart';
+import 'package:food_odering_app/pages/chatbot_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -80,7 +83,55 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 16),
 
+            // After the Special Offer Card and before 'Today New Arrival'
+            SizedBox(height: 16),
+
+
             
+
+// Voice Ordering Button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VoiceOrderingPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 104, vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              child: Text(
+                "Order with Voice 🎙️",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+
+            SizedBox(height: 16),
+
+            // AI Chatbot Button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatbotPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: EdgeInsets.symmetric(horizontal: 89, vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              child: Text(
+                "Chat with FoodMe 🤖💬",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+
+            SizedBox(height: 16),
 
             // Today's New Arrival
             Row(

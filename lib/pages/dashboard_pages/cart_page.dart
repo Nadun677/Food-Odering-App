@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/pages/payment_method_page.dart';
-// Import PaymentMethodPage
+// ignore: depend_on_referenced_packages
+//import 'package:food_ordering_app/pages/payment_method_page.dart'; // Import PaymentMethodPage
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -30,11 +31,7 @@ class _CartScreenState extends State<CartScreen> {
 
   // Calculate subtotal
   double getSubtotal() {
-    double subtotal = 0.0;
-    for (var item in cartItems) {
-      subtotal += item['price'] * item['quantity'];
-    }
-    return subtotal;
+    return cartItems.fold(0, (sum, item) => sum + (item['price'] * item['quantity']));
   }
 
   @override
@@ -125,6 +122,7 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
             ),
+            // Payment Summary
             Container(
               padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -174,7 +172,9 @@ class _CartScreenState extends State<CartScreen> {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Handle adding more items
+                    },
                     style: OutlinedButton.styleFrom(
                       padding: EdgeInsets.all(14),
                       side: BorderSide(color: Colors.green),
@@ -188,7 +188,7 @@ class _CartScreenState extends State<CartScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const PaymentMethodPage()),
+                        MaterialPageRoute(builder: (context) => PaymentMethodPage(getTotalAmount: totalAmount)),
                       );
                     },
                     style: ElevatedButton.styleFrom(

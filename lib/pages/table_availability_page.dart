@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:math'; // For AI-based table suggestions
-import 'reservation_confirmation_page.dart'; // Import the new page
+import 'dart:math';
+import 'reservation_confirmation_page.dart';
 
 class TableAvailabilityPage extends StatefulWidget {
   const TableAvailabilityPage({super.key});
@@ -11,6 +11,9 @@ class TableAvailabilityPage extends StatefulWidget {
 
 class _TableAvailabilityPageState extends State<TableAvailabilityPage> {
   List<Map<String, dynamic>> tables = [];
+  Set<int> reservedTables = {}; // Store reserved tables
+
+  final Random _random = Random();
 
   @override
   void initState() {
@@ -18,20 +21,35 @@ class _TableAvailabilityPageState extends State<TableAvailabilityPage> {
     _generateTableAvailability();
   }
 
+  // AI-based table availability logic
   void _generateTableAvailability() {
-    final random = Random();
     tables = List.generate(10, (index) {
-      bool isAvailable = random.nextBool(); // AI decision (randomized for now)
+      int tableId = index + 1;
+      bool isAvailable = !reservedTables.contains(tableId) && _random.nextDouble() > 0.3;
+      bool isRecommended = isAvailable && _random.nextDouble() > 0.7;
+
       return {
-        'id': index + 1,
+        'id': tableId,
         'isAvailable': isAvailable,
-        'recommended': isAvailable && random.nextInt(10) > 6,
+        'recommended': isRecommended,
       };
     });
+
     setState(() {});
   }
 
+  // Reserve a table and prevent it from becoming available again
   void _reserveTable(int tableId) {
+    setState(() {
+      reservedTables.add(tableId); // Mark as permanently reserved
+      int index = tables.indexWhere((table) => table['id'] == tableId);
+      if (index != -1) {
+        tables[index]['isAvailable'] = false;
+        tables[index]['recommended'] = false;
+      }
+    });
+
+    // Navigate to confirmation page
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -44,41 +62,72 @@ class _TableAvailabilityPageState extends State<TableAvailabilityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Table Availability'),
-        backgroundColor: Colors.green,
+        title: const Text('Table Availability'),
+        backgroundColor: Colors.green[700],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _generateTableAvailability, // Refresh button
+            tooltip: 'Refresh Availability',
+          ),
+        ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
+            const Text(
               'Reserve Your Table',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount: tables.length,
                 itemBuilder: (context, index) {
                   final table = tables[index];
-                  return Card(
-                    elevation: 3,
-                    color: table['isAvailable'] ? Colors.green[100] : Colors.red[100],
+
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: table['isAvailable'] ? Colors.green[100] : Colors.red[100],
+                    ),
                     child: ListTile(
                       leading: Icon(
                         table['isAvailable'] ? Icons.event_seat : Icons.block,
                         color: table['isAvailable'] ? Colors.green : Colors.red,
+                        size: 32,
                       ),
-                      title: Text('Table ${table['id']}'),
-                      subtitle: Text(table['isAvailable']
-                          ? (table['recommended'] ? '✔️ Recommended' : 'Available')
-                          : 'Reserved'),
+                      title: Text(
+                        'Table ${table['id']}',
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        table['isAvailable']
+                            ? (table['recommended'] ? '⭐ Recommended' : 'Available')
+                            : '❌ Reserved',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: table['isAvailable'] ? Colors.green[900] : Colors.red[900],
+                        ),
+                      ),
                       trailing: table['isAvailable']
                           ? ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: table['recommended']
+                                    ? Colors.orangeAccent
+                                    : Colors.green,
+                              ),
                               onPressed: () => _reserveTable(table['id']),
-                              child: Text('Reserve'),
+                              child: const Text('Reserve'),
                             )
-                          : null,
+                          : const Text(
+                              'Reserved',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+                            ),
                     ),
                   );
                 },

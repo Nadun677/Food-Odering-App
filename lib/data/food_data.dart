@@ -41,7 +41,7 @@ class FoodData {
     ),
     FoodModel(
       foodId: "004",
-      foodName: "Chicken Pasta",
+      foodName: "Chicken Cheese Pasta",
       foodImageUrl:
           "assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg",
       foodDescription:
