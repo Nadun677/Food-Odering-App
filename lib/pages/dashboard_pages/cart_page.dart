@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     },
   ];
 
-  double deliveryFee = 250.00;
+  // double deliveryFee = 250.00;
 
   // Calculate subtotal
   double getSubtotal() {
@@ -37,7 +37,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     double subtotal = getSubtotal();
-    double totalAmount = subtotal + deliveryFee;
+    double totalAmount = subtotal ;
 
     return Scaffold(
       appBar: AppBar(
@@ -144,14 +144,14 @@ class _CartScreenState extends State<CartScreen> {
                       Text("Rs ${subtotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 16)),
                     ],
                   ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Delivery Fee", style: TextStyle(fontSize: 16)),
-                      Text("Rs ${deliveryFee.toStringAsFixed(2)}", style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
+                  // SizedBox(height: 8),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Text("Service Charge", style: TextStyle(fontSize: 16)),
+                  //     Text("Rs ${deliveryFee.toStringAsFixed(2)}", style: TextStyle(fontSize: 16)),
+                  //   ],
+                  // ),
                   SizedBox(height: 8),
                   Divider(),
                   Row(
@@ -188,7 +188,7 @@ class _CartScreenState extends State<CartScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PaymentMethodPage(getTotalAmount: totalAmount)),
+                        MaterialPageRoute(builder: (context) => PaymentMethodPage(totalAmount: totalAmount)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
