@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(8)),
               ),
               child: Text(
-                "Chat with FoodMe 🤖💬",
+                "Chat with Foodgo 🤖💬",
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),

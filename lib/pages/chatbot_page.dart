@@ -11,7 +11,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
 
   // 🔹 Chatbot predefined responses
   final Map<String, String> botReplies = {
-    "hi": "Hello! 🤖 Welcome to our Food App! How can I assist you today? 🍽️",
+    "hi": "Hello! 🤖 Welcome to our Foodgo App! How can I assist you today? 🍽️",
     "hello": "Hi there! 😊 What can I do for you?",
     "order food": "Sure! What would you like to order? 🍔🍕",
     "burger": "Great choice! 🍔 Would you like to add fries 🍟 or a drink 🥤?",
@@ -114,7 +114,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FoodMe Chatbot 🤖")),
+      appBar: AppBar(title: Text("Foodgo Chatbot 🤖")),
       body: Column(
         children: [
           Expanded(

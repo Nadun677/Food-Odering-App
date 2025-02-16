@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<Map<String, dynamic>> _cartItems = [];
+  final List<Map<String, dynamic>> _cartItems = [
+
+  ];
 
   List<Map<String, dynamic>> get cartItems => _cartItems;
 
@@ -31,5 +33,9 @@ class CartProvider extends ChangeNotifier {
   void clearCart() {
     _cartItems.clear();
     notifyListeners();
+  }
+
+   getTotalAmount(){
+
   }
 }

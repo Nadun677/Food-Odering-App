@@ -48,7 +48,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
             ),
             Text(
               "+ Service Charge (10%): LKR ${(totalWithServiceCharge - widget.totalAmount).toStringAsFixed(2)}",
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+              style: const TextStyle(fontSize: 16, color: Color.fromARGB(255, 0, 0, 0)),
             ),
             Text(
               "Final Amount: LKR ${totalWithServiceCharge.toStringAsFixed(2)}",

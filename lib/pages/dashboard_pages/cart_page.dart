@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_odering_app/data/user_data.dart';
 import 'package:food_odering_app/pages/payment_method_page.dart';
-// ignore: depend_on_referenced_packages
-//import 'package:food_ordering_app/pages/payment_method_page.dart'; // Import PaymentMethodPage
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -11,105 +10,93 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // Cart items
-  List<Map<String, dynamic>> cartItems = [
-    {
-      "name": "Chicken Cheese Pasta",
-      "price": 1300.00,
-      "quantity": 1,
-      "image": "assets/images/gentle-tummy-lemon-chicken-pasta-cottage-cheese-recipe-13.jpg",
-    },
-    {
-      "name": "Chocolate Milkshake",
-      "price": 750.00,
-      "quantity": 2,
-      "image": "assets/images/Thick-chocolate-mikshake-1.jpg",
-    },
-  ];
-
-  // double deliveryFee = 250.00;
+  final userData = user;
 
   // Calculate subtotal
   double getSubtotal() {
-    return cartItems.fold(0, (sum, item) => sum + (item['price'] * item['quantity']));
+    return userData.foodCartList.fold(
+        0, (sum, item) => sum + (item.foodPrice * item.quantity));
   }
 
   @override
   Widget build(BuildContext context) {
     double subtotal = getSubtotal();
-    double totalAmount = subtotal ;
+    double totalAmount = subtotal;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text('Cart', style: TextStyle(color: Colors.white)),
+        title: const Text('Cart', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: cartItems.length,
+                itemCount: userData.foodCartList.length,
                 itemBuilder: (context, index) {
-                  var item = cartItems[index];
+                  final item = userData.foodCartList[index];
                   return Card(
                     elevation: 2,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Padding(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       child: Row(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
-                              item['image'],
+                              item.foodImageUrl,
                               width: 80,
                               height: 80,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          SizedBox(width: 12),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  item['name'],
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                  item.foodName,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(height: 4),
-                                Text("Rs ${item['price'].toStringAsFixed(2)}"),
+                                const SizedBox(height: 4),
+                                Text("Rs ${item.foodPrice.toStringAsFixed(2)}"),
                               ],
                             ),
                           ),
                           Row(
                             children: [
                               IconButton(
-                                icon: Icon(Icons.remove, color: Colors.green),
+                                icon: const Icon(Icons.remove, color: Colors.green),
                                 onPressed: () {
                                   setState(() {
-                                    if (item['quantity'] > 1) {
-                                      item['quantity']--;
+                                    if (item.quantity > 1) {
+                                      item.quantity--;
                                     }
                                   });
                                 },
                               ),
                               Text(
-                                item['quantity'].toString(),
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                item.quantity.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               IconButton(
-                                icon: Icon(Icons.add, color: Colors.green),
+                                icon: const Icon(Icons.add, color: Colors.green),
                                 onPressed: () {
                                   setState(() {
-                                    item['quantity']++;
+                                   item.quantity++;
                                   });
                                 },
                               ),
@@ -124,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             // Payment Summary
             Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.grey[300]!),
@@ -132,70 +119,73 @@ class _CartScreenState extends State<CartScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Payment Summary",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Subtotal", style: TextStyle(fontSize: 16)),
-                      Text("Rs ${subtotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 16)),
+                      const Text("Subtotal", style: TextStyle(fontSize: 16)),
+                      Text("Rs ${subtotal.toStringAsFixed(2)}",
+                          style: const TextStyle(fontSize: 16)),
                     ],
                   ),
-                  // SizedBox(height: 8),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text("Service Charge", style: TextStyle(fontSize: 16)),
-                  //     Text("Rs ${deliveryFee.toStringAsFixed(2)}", style: TextStyle(fontSize: 16)),
-                  //   ],
-                  // ),
-                  SizedBox(height: 8),
-                  Divider(),
+                  const SizedBox(height: 8),
+                  const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Total Amount", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      const Text("Total Amount",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
                       Text(
                         "Rs ${totalAmount.toStringAsFixed(2)}",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
                       // Handle adding more items
+                      Navigator.pop(context);
                     },
                     style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.all(14),
-                      side: BorderSide(color: Colors.green),
+                      padding: const EdgeInsets.all(14),
+                      side: const BorderSide(color: Colors.green),
                     ),
-                    child: Text("Add Item", style: TextStyle(fontSize: 16, color: Colors.green)),
+                    child: const Text("Add Item",
+                        style: TextStyle(fontSize: 16, color: Colors.green)),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PaymentMethodPage(totalAmount: totalAmount)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PaymentMethodPage(totalAmount: totalAmount)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      padding: EdgeInsets.all(14),
+                      padding: const EdgeInsets.all(14),
                     ),
-                    child: Text("Checkout", style: TextStyle(fontSize: 16, color: Colors.white)),
+                    child: const Text("Checkout",
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
                   ),
                 ),
               ],

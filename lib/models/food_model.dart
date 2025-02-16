@@ -7,6 +7,8 @@ class FoodModel {
   final double foodRating;
   final String location;
   final bool isMeal;
+  int quantity;
+  double spiciness;
 
   FoodModel({
     required this.foodId,
@@ -17,5 +19,26 @@ class FoodModel {
     required this.foodRating,
     required this.location,
     required this.isMeal,
+    this.quantity = 1,
+    this.spiciness = 0.0,
   });
+
+  // Add copyWith method for cart modifications
+  FoodModel copyWith({
+    int? quantity,
+    double? spiciness,
+  }) {
+    return FoodModel(
+      foodId: foodId,
+      foodName: foodName,
+      foodImageUrl: foodImageUrl,
+      foodDescription: foodDescription,
+      foodPrice: foodPrice,
+      foodRating: foodRating,
+      location: location,
+      isMeal: isMeal,
+      quantity: quantity ?? this.quantity,
+      spiciness: spiciness ?? this.spiciness,
+    );
+  }
 }

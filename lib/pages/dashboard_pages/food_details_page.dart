@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_odering_app/data/food_data.dart';
+import 'package:food_odering_app/data/user_data.dart';
 import 'package:food_odering_app/models/food_model.dart';
+import 'package:food_odering_app/models/user_model.dart';
 import 'package:food_odering_app/pages/dashboard_pages/cart_page.dart';
 
 class FoodDetailsPage extends StatefulWidget {
@@ -19,6 +21,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
   // Get food data
   final foodList = FoodData().foodList;
   late FoodModel food;
+
+  // get user
+  final userData = user;
 
   int quantity = 1;
   double price = 0;
@@ -173,24 +178,36 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   color: Colors.green),
             ),
             ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartScreen()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: Text("Added to Cart!"),
-                      duration: Duration(seconds: 2)),
-                );
-              },
-              icon: Icon(Icons.shopping_cart),
-              label: Text("Add to Cart"),
-            ),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.green,
+    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10)),
+  ),
+  onPressed: () {
+    // Create a customized copy for the cart
+    final cartItem = food.copyWith(
+      quantity: quantity,
+      spiciness: spiciness,
+    );
+    
+    // Add to user's cart
+    user.addFoodCart(cartItem);
+    
+    // Show confirmation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Added to Cart!"),
+        duration: Duration(seconds: 2))
+    );
+    
+    // Navigate to cart
+    Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CartScreen()));
+  },
+  icon: Icon(Icons.shopping_cart),
+  label: Text("Add to Cart"),
+),
           ],
         ),
       ),
